@@ -76,6 +76,8 @@ Comprobamos que se hacen ping correctamente:
 exit
 docker ps
 ```
+Comprobamos que ambos contenedores siguen corriendo, aun saliendo de la terminal
+
 ## 7. ¿Cuánta memoria en el disco duro ocupaste?
 ```bash
 docker system df
@@ -87,3 +89,6 @@ docker system df
 ```bash
 docker stats
 ```
+![dockerstats](https://github.com/user-attachments/assets/47b0c593-2189-402a-9980-5854c5322c8f)
+
+
