@@ -33,6 +33,20 @@ $docker start -ai dam_alp1
 
 ### DE AQUI EN ADELANTE PENDIENTE DE COMPLETAR!!!
 ### ------------------------------------------------------------------
+### TENGO QUE VOLVER A CREAR LOS CONTENEDORES CON -it
+
+$ docker run -it --name=Alpine1 alpine /bin/sh
+
+● -i: indica que el proceso lanzado en el contenedor docker estará en modo
+interactivo, es decir, enlaza la entrada estándar cuando se asigna un proceso
+a una terminal.
+
+● -t: asigna al proceso lanzado al arrancar el contenedor una pseudo terminal,
+facilitando el acceso al mismo desde nuestra terminal.
+
+● --name: nos permite establecer un nombre a nuestro contenedor. Si no
+indicamos este parámetro, nos creará un nombre aleatorio.
+
 ### ------------------------------------------------------------------
 
 
