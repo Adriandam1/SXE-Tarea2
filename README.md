@@ -25,41 +25,52 @@ Con el comando anterior ya podemos ver que el nombre del contenedor es: **focuse
 
 ## 3. Crear un contenedor con el nombre 'dam_alp1'. ¿Cómo puedes acceder a él?
 ```bash
-docker create --name=dam_alp1 alpine
-$docker start -ai dam_alp1
+docker container create -i -t --name dam_alp1 alpine
 ```
-![tarea2-3](https://github.com/user-attachments/assets/6db0f593-1ba2-4e8b-a1ff-f2cacd2527d3)
-
-
-### DE AQUI EN ADELANTE PENDIENTE DE COMPLETAR!!!
-### ------------------------------------------------------------------
-### TENGO QUE VOLVER A CREAR LOS CONTENEDORES CON -it
-
-$ docker run -it --name=Alpine1 alpine /bin/sh
-
-● -i: indica que el proceso lanzado en el contenedor docker estará en modo
-interactivo, es decir, enlaza la entrada estándar cuando se asigna un proceso
-a una terminal.
-
-● -t: asigna al proceso lanzado al arrancar el contenedor una pseudo terminal,
-facilitando el acceso al mismo desde nuestra terminal.
-
-● --name: nos permite establecer un nombre a nuestro contenedor. Si no
-indicamos este parámetro, nos creará un nombre aleatorio.
-
-### ------------------------------------------------------------------
-
+Para iniciarlo y acceder a él utilizamos(para salir ctrl + d):
+```bash
+docker container start --attach -i dam_alp1
+```
+![docker1](https://github.com/user-attachments/assets/06c1cdbe-9423-470a-a4a3-03020565635b)
 
 ## 4. Comprobar qué IP tiene y si puedes hacer un ping a google.com
+Comprobamos la ip con ipa :
 ```bash
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dam_alp1
-docker exec -it dam_alp1 ping google.com
+docker exec -it dam_alp1 /bin/sh
+ip a
 ```
+Comprobamos que la direccion ip es 172.17.0.2
+![dockeripA](https://github.com/user-attachments/assets/fd9dc135-def6-44a1-8b29-5badff90517f)
+
+
+
+Tambien podemos inspeccionarlo para sacar mas informacion:
+```bash
+docker inspect  dam_alp1
+```
+![docker inspect](https://github.com/user-attachments/assets/46d50cbc-6995-47a9-bdb2-64253168c2f9)
+
+Para realizar el ping a google usaremos:
+```bash
+docker start dam_alp1
+docker exec -it dam_alp1 /bin/sh
+ping google.com
+```
+![docker ping google](https://github.com/user-attachments/assets/d107b378-b3e8-45dc-a652-e34be40270b7)
+
+
 ## 5. Crear un contenedor con el nombre 'dam_alp2'. ¿Puedes hacer ping entre los contenedores?
+Nos iremos a otro terminal con alt + f2, creamos el nuevo contenedor, lo iniciamos y hacemos ping a 172.17.0.2 (la ip del primer contenedor)
 ```bash
-docker create --name=dam_alp2 alpine
-docker exec -it dam_alp1 ping <IP_de_dam_alp2>
+docker container create -i -t --name dam_alp2 alpine
+docker start dam_alp2
+docker exec -it dam_alp1 ping 172.17.0.2
 ```
+Comprobamos que se hacen ping correctamente:
+
+![pingenteecontenedores](https://github.com/user-attachments/assets/1cf6531b-d88a-4e1d-a92f-5fc9d3f72091)
+
+
 ## 6. Salir del terminal, ¿qué ocurrió con el contenedor?
 ```bash
 exit
