@@ -80,9 +80,10 @@ Comprobamos que ambos contenedores siguen corriendo, aun saliendo de la terminal
 
 ## 7. ¿Cuánta memoria en el disco duro ocupaste?
 ```bash
-docker system df
+docker system df -v
 ```
-![tarea2-7](https://github.com/user-attachments/assets/fd0bd1a1-1209-4abe-8e1b-57108ba396e4)
+![systemdf](https://github.com/user-attachments/assets/7476fbcb-bd06-427e-a10a-4cd56f1dd023)
+
 
 
 ## 8. ¿Cuánta RAM ocupan los contenedores? ¿Hay algún comando docker para saber esto?
